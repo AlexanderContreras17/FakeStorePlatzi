@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FakeStorePlatzi.Views.MainView"
+             Title="MainView"
+             xmlns:vm="clr-namespace:FakeStorePlatzi.ViewModels"
+             x:Name="MainPage">
+    <ContentPage.BindingContext>
+        <vm:FakeStoreViewModel x:Name="MainViewModel"></vm:FakeStoreViewModel>
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <FlexLayout BindableLayout.ItemsSource="{Binding Productos}" Wrap="Wrap" >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="15" HeightRequest="230" WidthRequest="160">
+                            <Image Source="{Binding images[0]}" WidthRequest="150" HeightRequest="150" Aspect="AspectFill"  />
+                            <Label Text="{Binding title}" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                            <Label Text="{Binding price,StringFormat='{0:C}'}" HorizontalTextAlignment="Center" />
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Ver" WidthRequest="60" HeightRequest="50" Clicked="Button_Clicked_1" Command="{Binding Path=BindingContext.MostrarCommand, Source={x:Reference MainPage}}"  CommandParameter="{Binding id}"></Button>
+                                <Button Text="Editar" WidthRequest="60" HeightRequest="50" Clicked="Button_Clicked_2"  Command="{Binding Path=BindingContext.MostrarCommand, Source={x:Reference MainPage}}"  CommandParameter="{Binding id}"></Button>
+                                <Button Text="Eliminar" WidthRequest="60" HeightRequest="50" Clicked="Button_Clicked_3"  Command="{Binding Path=BindingContext.MostrarCommand, Source={x:Reference MainPage}}"  CommandParameter="{Binding id}"></Button>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+
+        <Button Text="Agregar" Clicked="Button_Clicked"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                Margin="10"/>
+    </AbsoluteLayout>
+
+</ContentPage>

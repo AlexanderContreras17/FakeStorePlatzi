@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FakeStorePlatzi.Views.AgregarView"
+             Title="AgregarView"
+             xmlns:vm="clr-namespace:FakeStorePlatzi.ViewModels"
+             x:DataType="vm:FakeStoreViewModel"
+             BindingContext="{Binding Source={x:Reference MainViewModel}}">
+    <!--<ContentPage.BindingContext>
+        <vm:FakeStoreViewModel></vm:FakeStoreViewModel>
+    </ContentPage.BindingContext>-->
+    <StackLayout>
+        <Picker Title="Categoría" ItemsSource="{Binding Categories}" 
+            ItemDisplayBinding="{Binding name}"  SelectedItem="{Binding Category}" />
+
+        <Entry Placeholder="Nombre" Text="{Binding NuevoProducto.title}" />
+        <Entry Placeholder="Descripción" Text="{Binding NuevoProducto.description}" />
+        <Entry Placeholder="Precio" Text="{Binding NuevoProducto.price}" Keyboard="Numeric" />
+        <Entry Placeholder="URL de la imagen" Text="{Binding Imagen}" />
+        
+        <Button Text="Agregar" Clicked="Button_Clicked" Command="{Binding AgregarCommand}" />
+    </StackLayout>
+</ContentPage>
